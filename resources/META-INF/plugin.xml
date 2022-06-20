@@ -1,19 +1,20 @@
 <idea-plugin>
     <id>com.lcl100.</id>
     <name>Java To Class</name>
-    <version>1.0</version>
+    <version>1.1</version>
     <vendor email="2961316542@qq.com" url="https://github.com/lcl100/">lcl100</vendor>
 
     <description>
         <![CDATA[
-      <em>From a java file to a class file.</em>
+      <em>From a java file to a class file.</em><br/>
       <em>该插件的功能是从一个 .java 文件跳转到对应的 .class 文件。</em>
     ]]>
     </description>
 
     <change-notes>
         <![CDATA[
-      <em>Init.</em>
+      <em>1.0 Init.</em>
+      <em>1.1 Update comments.</em>
     ]]>
     </change-notes>
 
@@ -26,8 +27,8 @@
     </extensions>
 
     <actions>
-        <action id="java-to-class-action" class="action.JavaToClassAction" text="定位class"
-                description="通过当前的java文件定位到对应的class文件">
+        <action id="java-to-class-action" class="action.JavaToClassAction" text="Locate Class File"
+                description="Locate the corresponding class file through the current java file.">
             <add-to-group group-id="ProjectViewPopupMenu" anchor="first"/>
         </action>
     </actions>
