@@ -1,20 +1,23 @@
 <idea-plugin>
     <id>com.lcl100.</id>
     <name>Java To Class</name>
-    <version>1.1</version>
+    <version>1.2</version>
     <vendor email="2961316542@qq.com" url="https://github.com/lcl100/">lcl100</vendor>
 
     <description>
         <![CDATA[
-      <em>From a java file to a class file.</em><br/>
-      <em>该插件的功能是从一个 .java 文件跳转到对应的 .class 文件。</em>
+      <em>Allows you to quickly locate and jump to a class file for your java file.</em><br/>
+      <em>该插件的功能是允许你快速定位并且跳转到一个 `.java` 文件所对应的 `.cass` 文件。</em>
     ]]>
     </description>
 
     <change-notes>
         <![CDATA[
-      <em>1.0 Init.</em>
-      <em>1.1 Update comments.</em>
+        <ul>
+            <li>1.0 Init.</li>
+            <li>1.1 Update comments.</li>
+            <li>1.2 Update comments.</li>
+        </ul>
     ]]>
     </change-notes>
 
