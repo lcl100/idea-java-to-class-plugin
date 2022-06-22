@@ -10,6 +10,8 @@ import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.actionSystem.PlatformDataKeys;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.fileEditor.OpenFileDescriptor;
+import com.intellij.openapi.module.Module;
+import com.intellij.openapi.module.ModuleManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VirtualFile;
@@ -58,7 +60,16 @@ public class JavaToClassAction extends AnAction {
                     // 获取 target 目录下的所有文件路径
                     getDirPaths(targetDirPath, paths);
                 }
-
+                // 如果是多个模块，则上面的路径不会生效，因为上面的路径只对单模块项目有效
+                Module[] modules = ModuleManager.getInstance(project).getModules();
+                for (Module module : modules) {
+                    String modulePath = module.getModuleFile().getParent().getPath();
+                    targetDirPath = modulePath + "/target";
+                    targetDirFile = new File(targetDirPath);
+                    if (targetDirFile.exists()) {
+                        getDirPaths(targetDirPath, paths);
+                    }
+                }
                 // 循环判断所有路径，如果找到该文件则打开该文件
                 for (String path : paths) {
                     // 只查找 .class 结尾的文件
