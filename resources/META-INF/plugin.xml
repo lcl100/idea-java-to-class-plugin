@@ -1,8 +1,8 @@
 <idea-plugin>
     <id>com.lcl100.</id>
     <name>Java To Class</name>
-    <version>1.3</version>
-    <vendor email="2961316542@qq.com" url="https://github.com/lcl100/">lcl100</vendor>
+    <version>1.4</version>
+    <vendor email="2961316542@qq.com" url="https://github.com/lcl100/idea-java-to-class-plugin">lcl100</vendor>
 
     <description>
         <![CDATA[
@@ -15,26 +15,76 @@
         <![CDATA[
         <ul>
             <li>1.0 Init.</li>
-            <li>1.1 Update comments.</li>
-            <li>1.2 Update comments.</li>
-            <li>1.3 Fix multi-module project failure problem.</li>
+            <li>1.1 Updated comments.</li>
+            <li>1.2 Updated comments.</li>
+            <li>1.3 Fixed multi-module project failure problem.</li>
+            <li>1.4 Fixed multi-module project failure problem, and added new functions. (issue #1)</li>
         </ul>
     ]]>
     </change-notes>
 
-    <idea-version since-build="173.0"/>
+    <idea-version since-build="193.5233.102"/>
 
     <depends>com.intellij.modules.platform</depends>
 
-    <extensions defaultExtensionNs="com.intellij">
-        <!-- Add your extensions here -->
-    </extensions>
+    <extensions defaultExtensionNs="com.intellij"/>
 
     <actions>
-        <action id="java-to-class-action" class="action.JavaToClassAction" text="Locate Class File"
-                description="Locate the corresponding class file through the current java file.">
+        <!-- 项目视图 -->
+        <group
+                id="LocateClassFileInProjectView"
+                popup="true"
+                text="Locate Class File">
             <add-to-group group-id="ProjectViewPopupMenu" anchor="first"/>
-        </action>
+            <action id="LocateClassInProjectViewByProjectViewPopupMenu"
+                    class="action.LocateClassFileInProjectViewByProjectViewPopupMenuAction"
+                    text="Open in Project View"
+                    description="Only locate the corresponding class file through the current java file from the editor.">
+                <add-to-group group-id="LocateClassFileInEditorPopupMenu" anchor="first"/>
+            </action>
+            <action id="LocateClassInExplorerByProjectViewPopupMenu"
+                    class="action.LocateClassFileInExplorerByProjectViewPopupMenuAction"
+                    text="Open in Explorer"
+                    description="Only open the corresponding class file through the current java file in the explorer.">
+                <add-to-group group-id="LocateClassFileInEditorPopupMenu" anchor="after"
+                              relative-to-action="LocateClassInProjectViewByProjectViewPopupMenu"/>
+            </action>
+            <action id="LocateClassInProjectViewAndExplorerByEditorPopupMenuAction"
+                    class="action.LocateClassFileInProjectViewAndExplorerByProjectViewPopupMenuAction"
+                    text="Open in Project View and Explorer"
+                    description="Locate the corresponding class file through the current java file from the editor, and Open it in the explorer.">
+                <add-to-group group-id="LocateClassFileInEditorPopupMenu" anchor="after"
+                              relative-to-action="LocateClassInExplorerByProjectViewPopupMenu"/>
+            </action>
+        </group>
+
+        <!-- 编辑器面板 -->
+        <group
+                id="LocateClassFileInEditorPopupMenu"
+                popup="true"
+                text="Locate Class File">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+            <action id="LocateClassInProjectViewByEditorPopupMenuAction"
+                    class="action.LocateClassFileInProjectViewByEditorPopupMenuAction"
+                    text="Open in Project View"
+                    description="Only locate the corresponding class file through the current java file from the editor.">
+                <add-to-group group-id="LocateClassFileInEditorPopupMenu" anchor="first"/>
+            </action>
+            <action id="LocateClassInExplorerByEditorPopupMenuAction"
+                    class="action.LocateClassFileInExplorerByEditorPopupMenuAction"
+                    text="Open in Explorer"
+                    description="Only open the corresponding class file through the current java file in the explorer.">
+                <add-to-group group-id="LocateClassFileInEditorPopupMenu" anchor="after"
+                              relative-to-action="LocateClassInProjectViewByEditorPopupMenuAction"/>
+            </action>
+            <action id="LocateClassInProjectViewAndExplorerByEditorPopupMenuAction"
+                    class="action.LocateClassFileInProjectViewAndExplorerByEditorPopupMenuAction"
+                    text="Open in Project View and Explorer"
+                    description="Locate the corresponding class file through the current java file from the editor, and Open it in the explorer.">
+                <add-to-group group-id="LocateClassFileInEditorPopupMenu" anchor="after"
+                              relative-to-action="LocateClassInExplorerByEditorPopupMenuAction"/>
+            </action>
+        </group>
     </actions>
 
 </idea-plugin>
