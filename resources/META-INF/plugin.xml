@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.lcl100.</id>
     <name>Java To Class</name>
-    <version>1.6</version>
+    <version>1.7</version>
     <vendor email="lcl2961316542@163.com" url="https://github.com/lcl100/idea-java-to-class-plugin">lcl100</vendor>
 
     <description>
@@ -21,11 +21,12 @@
             <li>1.4 Fixed multi-module project failure problem, and added new functions. (<a href="https://github.com/lcl100/idea-java-to-class-plugin/issues/1">issue #1</a>)</li>
             <li>1.5 Fixed error log output. (<a href="https://github.com/lcl100/idea-java-to-class-plugin/issues/2">issue #2</a> and <a href="https://github.com/lcl100/idea-java-to-class-plugin/issues/3">issue #3</a>)</li>
             <li>1.6 Fixed error log output. (<a href="https://github.com/lcl100/idea-java-to-class-plugin/issues/4">issue #4</a>)</li>
+            <li>1.7 Compatibility fix.</li>
         </ul>
     ]]>
     </change-notes>
 
-    <idea-version since-build="193.5233.102"/>
+    <idea-version since-build="201.6668.113"/>
 
     <depends>com.intellij.modules.platform</depends>
 

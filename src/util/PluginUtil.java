@@ -73,7 +73,7 @@ public class PluginUtil {
                     return null;
                 }
             };
-            for (SelectInTarget target : SelectInManager.getInstance(project).getTargets()) {
+            for (SelectInTarget target : SelectInManager.getInstance(project).getTargetList()) {
                 if (target.canSelect(context)) {
                     target.selectIn(context, true);
                     return;
