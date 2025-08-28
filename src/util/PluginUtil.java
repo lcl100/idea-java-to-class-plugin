@@ -9,6 +9,7 @@ import com.intellij.openapi.fileEditor.OpenFileDescriptor;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleManager;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VirtualFile;
 import constants.ProjectTypeEnum;
@@ -29,6 +30,11 @@ public class PluginUtil {
      */
     public static void openInExplorer(String filePath) {
         try {
+            if (filePath == null || filePath.trim().isEmpty()) {
+                // 显示一个简单的“信息”对话框
+                Messages.showErrorDialog("The file does not exist: " + filePath, "Error");
+                throw new NullPointerException("classFile 为空对象，可能文件不存在：" + filePath);
+            }
             Runtime.getRuntime().exec("explorer /select, " + filePath);
         } catch (Exception e) {
             e.printStackTrace();
@@ -45,31 +51,32 @@ public class PluginUtil {
             // 找到该文件则打开该文件，在编辑器中打开
             File f = new File(filePath);
             VirtualFile classFile = LocalFileSystem.getInstance().findFileByPath(f.getAbsolutePath());
+            if (classFile == null) {
+                // 显示一个简单的“信息”对话框
+                Messages.showErrorDialog("The file does not exist: " + f.getAbsolutePath(), "Error");
+                throw new NullPointerException("classFile 为空对象，可能文件不存在：" + f.getAbsolutePath());
+            }
             OpenFileDescriptor openFileDescriptor = new OpenFileDescriptor(project, classFile);
             FileEditorManager.getInstance(project).openTextEditor(openFileDescriptor, true);
             // 同时在左侧的导航树视图也展开
             SelectInContext context = new SelectInContext() {
                 @Override
-                public @NotNull
-                Project getProject() {
+                public @NotNull Project getProject() {
                     return project;
                 }
 
                 @Override
-                public @NotNull
-                VirtualFile getVirtualFile() {
+                public @NotNull VirtualFile getVirtualFile() {
                     return classFile;
                 }
 
                 @Override
-                public @Nullable
-                Object getSelectorInFile() {
+                public @Nullable Object getSelectorInFile() {
                     return null;
                 }
 
                 @Override
-                public @Nullable
-                FileEditorProvider getFileEditorProvider() {
+                public @Nullable FileEditorProvider getFileEditorProvider() {
                     return null;
                 }
             };

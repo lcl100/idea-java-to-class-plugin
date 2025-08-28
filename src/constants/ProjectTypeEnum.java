@@ -5,6 +5,8 @@ package constants;
  */
 public enum ProjectTypeEnum {
     NOT_MAVEN("非maven项目"),
+    SINGLE_MODULE_WITH_NOT_MAVEN("单模块项目不带maven"),
+    MULTI_MODULE_WITH_NOT_MAVEN("多模块项目不带maven"),
     SINGLE_MODULE_MAVEN("单模块maven项目"),
     MULTI_MODULE_MAVEN("多模块maven项目");
 
